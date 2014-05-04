@@ -1,0 +1,17 @@
+name: AttributesAPI
+author: Ruud Verbeek
+version: 1.0
+description: API to use Minecraft's Attribute system
+main: nl.arfie.bukkit.attributes.AttributesAPI
+prefix: Attributes
+
+commands:
+  attribute:
+    description: Add an Attribute to the item in your hand.
+    usage: /<command> <type> <operation> <value>
+    aliases: [attr]
+    permission: attribute
+
+permissions:
+  attribute:
+    default: op
