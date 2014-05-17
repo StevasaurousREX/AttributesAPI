@@ -29,7 +29,7 @@ public enum Operation {
 	 * Will add <tt>output * (1+amount)</tt> to the output, after applying all other operations.
 	 */
 	ADD_PERCENTAGE(2);
-	int id;
+	public int id;
 	
 	Operation(int id){
 		this.id=id;

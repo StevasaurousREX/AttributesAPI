@@ -43,7 +43,7 @@ public enum AttributeType {
 	 */
 	SPAWN_REINFORCEMENTS("zombie.spawnReinforcements");
 	
-	String minecraftID;
+	public String minecraftID;
 	
 	AttributeType(String minecraftID){
 		this.minecraftID=minecraftID;
