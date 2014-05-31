@@ -2,6 +2,8 @@ package nl.arfie.bukkit.attributes;
 
 import nl.arfie.bukkit.attributes.wrapper.NBTTagCompound;
 
+import org.bukkit.inventory.ItemStack;
+
 import java.util.UUID;
 
 import com.google.common.base.Preconditions;
@@ -158,6 +160,38 @@ public class Attribute {
 		tag.setLong("UUIDMost",uuid.getMostSignificantBits());
 		tag.setLong("UUIDLeast",uuid.getLeastSignificantBits());
 		return tag;
+	}
+	
+	/**
+	 * Returns whether or not this attribute is equal to o.
+	 */
+	
+	public boolean equals(Object o){
+		if(!(o instanceof Attribute))
+			return false;
+		Attribute a = (Attribute)o;
+		return(uuid.equals(a.uuid)||(
+				type==a.type && operation==a.operation && amount==a.amount));
+	}
+	
+	static Attribute fromTag(NBTTagCompound c)throws IllegalArgumentException{
+		Attribute a = new Attribute();
+		if(c.hasKey("AttributeName"))a.setType(AttributeType.fromMinecraftID(c.getString("AttributeName"))); else throw new IllegalArgumentException("No AttributeName specified.");
+		if(c.hasKey("Operation"))a.setOperation(Operation.fromID(c.getInt("Operation"))); else throw new IllegalArgumentException("No Operation specified.");
+		if(c.hasKey("Amount"))a.setAmount(c.getDouble("Amount")); else throw new IllegalArgumentException("No Amount specified.");
+		if(c.hasKey("UUIDMost") && c.hasKey("UUIDLeast"))a.setUUID(new UUID(c.getLong("UUIDLeast"),c.getLong("UUIDMost"))); else a.setUUID(UUID.randomUUID());
+		return a;
+	}
+	
+	/**
+	 * Shortcut to {@link Attributes#apply}.
+	 * @param is ItemStack to apply this attribute to
+	 * @param replace Whether or not to replace existing attributes on the ItemStack
+	 * @return the new ItemStack containing this Attribute
+	 */
+	
+	public ItemStack apply(ItemStack is, boolean replace){
+		return Attributes.apply(is, this, replace);
 	}
 	
 }

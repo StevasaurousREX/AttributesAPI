@@ -35,4 +35,11 @@ public enum Operation {
 		this.id=id;
 	}
 	
+	public static Operation fromID(int id){
+		for(Operation o : values())
+			if(o.id==id)
+				return o;
+		return null;
+	}
+	
 }

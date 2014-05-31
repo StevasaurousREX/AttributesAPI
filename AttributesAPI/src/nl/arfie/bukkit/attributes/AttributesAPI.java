@@ -50,7 +50,7 @@ public class AttributesAPI extends JavaPlugin{
 				sender.sendMessage("§c"+args[2]+" is not a valid double.");
 				return false;
 			}
-			p.setItemInHand(new AttributeList(new Attribute(type,operation,value)).apply(item,false));
+			p.setItemInHand(Attributes.apply(item,new Attribute(type,operation,value),false));
 			sender.sendMessage("§aSuccessfully added "+type.toString()+" to your "+item.getType().toString()+", operation "+operation.toString()+" with value "+value+".");
 			return true;
 		}

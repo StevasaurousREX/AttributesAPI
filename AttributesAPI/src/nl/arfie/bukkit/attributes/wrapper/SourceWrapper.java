@@ -12,17 +12,23 @@ abstract class SourceWrapper {
 	
 	private static HashMap<String, Method> methods = new HashMap<String, Method>();
 	
+	protected static String v;
+	
+	static{
+		String pkgName = Bukkit.getServer().getClass().getPackage().getName();
+		v = "."+pkgName.substring(pkgName.lastIndexOf('.')+1)+".";
+	}
+	
 	public SourceWrapper(Object instance){
 		this.instance=instance;
 	}
 	
 	protected static Class<?> loadClass(String start, String end){
-		for(int i=1; i<=25; ++i){
-			try {
-				return Bukkit.class.getClassLoader().loadClass(start+".v1_7_R"+i+"."+end);
-			} catch (ClassNotFoundException ex) {}
+		try {
+			return Bukkit.class.getClassLoader().loadClass(start+v+end);
+		} catch (ClassNotFoundException ex) {
+			return null;
 		}
-		return null;
 	}
 	
 	protected static void declareMethod(Class<?> clazz, String name, Class<?>... parameterTypes){

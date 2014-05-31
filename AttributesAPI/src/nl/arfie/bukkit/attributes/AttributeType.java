@@ -49,4 +49,11 @@ public enum AttributeType {
 		this.minecraftID=minecraftID;
 	}
 	
+	public static AttributeType fromMinecraftID(String id){
+		for(AttributeType t : values())
+			if(t.minecraftID.equalsIgnoreCase(id))
+				return t;
+		return null;
+	}
+	
 }
