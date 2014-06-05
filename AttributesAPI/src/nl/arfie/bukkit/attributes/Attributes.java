@@ -85,7 +85,7 @@ public class Attributes {
 	/**
 	 * Returns a {@link List} containing the {@link Attribute}s on the given {@link ItemStack}.
 	 * @param is the ItemStack to take the Attributes from
-	 * @return a List containing the Attributes, or an empty list if there weren't any Attributes on the list or an error occurred.
+	 * @return a List containing the Attributes, or an empty list if there weren't any Attributes on the ItemStack or an error occurred.
 	 */
 	
 	public static List<Attribute> fromStack(ItemStack is){
