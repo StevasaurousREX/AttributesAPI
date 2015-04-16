@@ -1,6 +1,8 @@
 package nl.arfie.bukkit.attributes.wrapper;
 
 import java.lang.reflect.Field;
+import java.util.logging.Level;
+import nl.arfie.bukkit.attributes.AttributesAPI;
 import org.bukkit.Bukkit;
 
 public class MinecraftItemStack extends SourceWrapper {
@@ -29,8 +31,7 @@ public class MinecraftItemStack extends SourceWrapper {
         try {
             tagField.set(instance, tag.instance);
         } catch (IllegalArgumentException | IllegalAccessException | SecurityException ex) {
-            Bukkit.getLogger().info(instance.getClass().getName());
-            ex.printStackTrace();
+            AttributesAPI.getLog().log(Level.SEVERE, "Failed to set tag for "+instance.getClass().getName()+"!" , ex);
 
         }
     }
@@ -39,8 +40,7 @@ public class MinecraftItemStack extends SourceWrapper {
         try {
             return new NBTTagCompound(tagField.get(instance));
         } catch (IllegalArgumentException | IllegalAccessException | SecurityException | InstantiationException ex) {
-            Bukkit.getLogger().info(instance.getClass().getName());
-            ex.printStackTrace();
+            AttributesAPI.getLog().log(Level.SEVERE, "Failed to get tag for "+instance.getClass().getName()+"!" , ex);
             return null;
         }
     }

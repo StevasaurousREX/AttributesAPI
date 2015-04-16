@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * Class to apply {@link Attribute}s or {@link Collection}s containing
@@ -55,7 +56,7 @@ public class Attributes {
             stack.setTag(tag);
             return CraftItemStack.asCraftMirror(stack).getStack();
         } catch (InstantiationException | IllegalAccessException ex) {
-            ex.printStackTrace();
+            AttributesAPI.getLog().log(Level.SEVERE, "Failed to aplly attribute "+attribute.toString()+" to item stack!", ex);
             return original;
         }
     }
@@ -81,7 +82,7 @@ public class Attributes {
             stack.setTag(tag);
             return CraftItemStack.asCraftMirror(stack).getStack();
         } catch (InstantiationException | IllegalAccessException ex) {
-            ex.printStackTrace();
+            AttributesAPI.getLog().log(Level.SEVERE, "Failed to aplly attributes "+attributes.toString()+" to item stack!", ex);
             return original;
         }
     }
@@ -109,7 +110,7 @@ public class Attributes {
             }
             return list;
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
-            ex.printStackTrace();
+            AttributesAPI.getLog().log(Level.SEVERE, "Failed to load attributes  from " + is.toString(), ex);
             return new ArrayList<>();
         }
     }

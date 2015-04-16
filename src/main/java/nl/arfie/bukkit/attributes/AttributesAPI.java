@@ -1,5 +1,7 @@
 package nl.arfie.bukkit.attributes;
 
+import java.util.logging.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -10,6 +12,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class AttributesAPI extends JavaPlugin {
 
+    private static AttributesAPI instance;
+    
+    public static AttributesAPI getInstance() {
+        if (instance == null) {
+            instance = (AttributesAPI)Bukkit.getPluginManager().getPlugin("AttributesAPI");
+        }
+        return instance;
+    }
+    
+    public static Logger getLog() {
+        return getInstance().getLogger();
+    }
+    
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!cmd.getName().equalsIgnoreCase("attribute")) {

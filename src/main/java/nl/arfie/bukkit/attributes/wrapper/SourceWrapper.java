@@ -4,7 +4,10 @@ import org.bukkit.Bukkit;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.logging.Level;
+import nl.arfie.bukkit.attributes.AttributesAPI;
 
 abstract class SourceWrapper {
 
@@ -35,7 +38,11 @@ abstract class SourceWrapper {
         try {
             methods.put(name, clazz.getMethod(name, parameterTypes));
         } catch (NoSuchMethodException | SecurityException ex) {
-            ex.printStackTrace();
+            if (parameterTypes != null && parameterTypes.length > 0) {
+                AttributesAPI.getLog().log(Level.SEVERE, "Failed to get declared method " + name + " with parameters " + Arrays.deepToString(parameterTypes) + " for " + clazz.getClass().getName() + "!", ex);
+            } else {
+                AttributesAPI.getLog().log(Level.SEVERE, "Failed to get declared method " + name + " for " + clazz.getClass().getName() + "!", ex);
+            }
         }
     }
 
@@ -43,7 +50,11 @@ abstract class SourceWrapper {
         try {
             return methods.get(name).invoke(instance, args);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            ex.printStackTrace();
+            if (args != null && args.length > 0) {
+                AttributesAPI.getLog().log(Level.SEVERE, "Failed to invoke metod " + name + " with parameters " + Arrays.deepToString(args) + " for " + instance.getClass().getName() + "!", ex);
+            } else {
+                AttributesAPI.getLog().log(Level.SEVERE, "Failed to invoke metod " + name + " for " + instance.getClass().getName() + "!", ex);
+            }
             return null;
         }
     }
@@ -52,7 +63,11 @@ abstract class SourceWrapper {
         try {
             return methods.get(name).invoke(null, args);
         } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            ex.printStackTrace();
+            if (args != null && args.length > 0) {
+                AttributesAPI.getLog().log(Level.SEVERE, "Failed to invoke static metod " + name + " with parameters " + Arrays.deepToString(args) + "!", ex);
+            } else {
+                AttributesAPI.getLog().log(Level.SEVERE, "Failed to invoke static metod " + name + "!", ex);
+            }
             return null;
         }
     }

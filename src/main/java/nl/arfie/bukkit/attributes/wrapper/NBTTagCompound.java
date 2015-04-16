@@ -1,5 +1,8 @@
 package nl.arfie.bukkit.attributes.wrapper;
 
+import java.util.logging.Level;
+import nl.arfie.bukkit.attributes.AttributesAPI;
+
 public class NBTTagCompound extends NBTBase {
 
     private final static Class<?> clazz = loadClass("net.minecraft.server", "NBTTagCompound");
@@ -70,7 +73,7 @@ public class NBTTagCompound extends NBTBase {
         try {
             return new NBTTagList(invokeMethod("getList", key, paramInt));
         } catch (InstantiationException | IllegalAccessException ex) {
-            ex.printStackTrace();
+            AttributesAPI.getLog().log(Level.SEVERE, "Failed to get List for "+instance.getClass().getName()+"!" , ex);
             return null;
         }
     }
