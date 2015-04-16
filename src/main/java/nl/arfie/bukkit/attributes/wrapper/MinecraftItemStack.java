@@ -2,7 +2,7 @@ package nl.arfie.bukkit.attributes.wrapper;
 
 public class MinecraftItemStack extends SourceWrapper {
 
-	private static Class<?> clazz = loadClass("net.minecraft.server","ItemStack");
+	private final static Class<?> clazz = loadClass("net.minecraft.server","ItemStack");
 	
 	public MinecraftItemStack() throws InstantiationException, IllegalAccessException{super(clazz.newInstance());}
 	public MinecraftItemStack(Object instance){super(instance);}

@@ -2,7 +2,7 @@ package nl.arfie.bukkit.attributes.wrapper;
 
 public class NBTTagList extends NBTBase {
 
-	private static Class<?> clazz = loadClass("net.minecraft.server","NBTTagList");
+	private final static Class<?> clazz = loadClass("net.minecraft.server","NBTTagList");
 	
 	static{
 		declareMethod(clazz,"size");

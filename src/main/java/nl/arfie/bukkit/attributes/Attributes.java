@@ -94,16 +94,16 @@ public class Attributes {
 			NBTTagCompound tag = mcis.getTag();
 			NBTTagList attributes;
 			if((attributes=tag.getList("AttributeModifiers",10))==null)
-				return new ArrayList<Attribute>();
+				return new ArrayList<>();
 			List<Attribute> list = new ArrayList<>();
 			for(int i=0; i<attributes.size(); ++i){
 				NBTTagCompound attribute = attributes.get(i);
 				list.add(Attribute.fromTag(attribute));
 			}
 			return list;
-		}catch(Exception ex){
+		}catch(InstantiationException | IllegalAccessException | IllegalArgumentException ex){
 			ex.printStackTrace();
-			return new ArrayList<Attribute>();
+			return new ArrayList<>();
 		}
 	}
 	

@@ -166,6 +166,7 @@ public class Attribute {
 	 * Returns whether or not this attribute is equal to o.
 	 */
 	
+        @Override
 	public boolean equals(Object o){
 		if(!(o instanceof Attribute))
 			return false;

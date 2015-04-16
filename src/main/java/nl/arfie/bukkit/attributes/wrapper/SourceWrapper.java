@@ -10,7 +10,7 @@ abstract class SourceWrapper {
 
 	protected Object instance;
 	
-	private static HashMap<String, Method> methods = new HashMap<String, Method>();
+	private static final HashMap<String, Method> methods = new HashMap<String, Method>();
 	
 	protected static String v;
 	

@@ -4,7 +4,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class CraftItemStack extends SourceWrapper {
 
-	private static Class<?> clazz = loadClass("org.bukkit.craftbukkit","inventory.CraftItemStack");
+	private final static Class<?> clazz = loadClass("org.bukkit.craftbukkit","inventory.CraftItemStack");
 	
 	static{
 		declareMethod(clazz,"asNMSCopy",ItemStack.class);
